@@ -1,7 +1,7 @@
 Feature: --knapsack
   Rule: it should store knapsack at provided location (default 'knapsack.json')
     Background:
-      Given a file named "cypress/integration/a.js" with:
+      Given a file named "cypress/e2e/a.js" with:
         """
         it("should pass", () => expect(true).to.be.true);
         """
@@ -16,7 +16,7 @@ Feature: --knapsack
       And I should see a file "knapsack.json" with content matching:
         """
         {
-          "cypress/integration/a.js": \d+
+          "cypress/e2e/a.js": \d+
         }
         """
 
@@ -30,7 +30,7 @@ Feature: --knapsack
       And I should see a file "sackknap.json" with content matching:
         """
         {
-          "cypress/integration/a.js": \d+
+          "cypress/e2e/a.js": \d+
         }
         """
 
@@ -44,6 +44,6 @@ Feature: --knapsack
       And I should see a file "sackknap.json" with content matching:
         """
         {
-          "cypress/integration/a.js": \d+
+          "cypress/e2e/a.js": \d+
         }
         """

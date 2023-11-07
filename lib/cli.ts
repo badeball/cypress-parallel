@@ -209,7 +209,12 @@ export async function run(argv: string[], env: NodeJS.ProcessEnv, cwd: string) {
       disableKnapsackOutput: options.disableKnapsackOutput,
     };
 
-    const cypressConfiguration = getCypressConfiguration({ argv, env, cwd });
+    const cypressConfiguration = getCypressConfiguration({
+      testingType: "e2e",
+      argv,
+      env,
+      cwd,
+    });
 
     const reporterOptions = ["-r", "--reporter", "-o", "--reporter-options"];
 
@@ -237,7 +242,7 @@ export async function run(argv: string[], env: NodeJS.ProcessEnv, cwd: string) {
       parallelConfiguration.readKnapsack ?? parallelConfiguration.knapsack
     );
 
-    const testFiles = getTestFiles({ argv, env, cwd });
+    const testFiles = getTestFiles(cypressConfiguration);
 
     const weighedFiles: WeighedFile[] = await Object.entries(knapsack).reduce<
       Promise<WeighedFile[]>

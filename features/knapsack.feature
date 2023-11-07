@@ -1,7 +1,7 @@
 Feature: knapsack.json
   Rule: it should handle any *normal* knapsack scenario somewhat gracefully, otherwise error
     Scenario: knapsack missing entirely
-      Given a file named "cypress/integration/a.js" with:
+      Given a file named "cypress/e2e/a.js" with:
         """
         it("should pass", () => {});
         """
@@ -10,7 +10,7 @@ Feature: knapsack.json
       But it passes
 
     Scenario: knapsack missing a file
-      Given a file named "cypress/integration/a.js" with:
+      Given a file named "cypress/e2e/a.js" with:
         """
         it("should pass", () => {});
         """
@@ -22,15 +22,15 @@ Feature: knapsack.json
       Then it passes
 
     Scenario: knapsack containing a removed file
-      Given a file named "cypress/integration/a.js" with:
+      Given a file named "cypress/e2e/a.js" with:
         """
         it("should pass", () => {});
         """
       And a file named "knapsack.json" with:
         """
         {
-          "cypress/integration/a.js": 1,
-          "cypress/integration/b.js": 1
+          "cypress/e2e/a.js": 1,
+          "cypress/e2e/b.js": 1
         }
         """
       Given I run cypress-parallel with "--node 1:1"
@@ -40,22 +40,24 @@ Feature: knapsack.json
       Given additional Cypress configuration
         """
         {
-          "testFiles": "**/a.js"
+          "e2e": {
+            "specPattern": "**/a.js"
+          }
         }
         """
-      And a file named "cypress/integration/a.js" with:
+      And a file named "cypress/e2e/a.js" with:
         """
         it("should pass", () => {});
         """
-      And a file named "cypress/integration/b.js" with:
+      And a file named "cypress/e2e/b.js" with:
         """
         it("should pass", () => {});
         """
       And a file named "knapsack.json" with:
         """
         {
-          "cypress/integration/a.js": 1,
-          "cypress/integration/b.js": 1
+          "cypress/e2e/a.js": 1,
+          "cypress/e2e/b.js": 1
         }
         """
       Given I run cypress-parallel with "--node 1:1"
@@ -63,7 +65,7 @@ Feature: knapsack.json
       And it should appear as if only a single test ran
 
     Scenario: knapsack isn't JSON
-      Given a file named "cypress/integration/a.js" with:
+      Given a file named "cypress/e2e/a.js" with:
         """
         it("should pass", () => {});
         """
@@ -79,7 +81,7 @@ Feature: knapsack.json
         """
 
     Scenario: knapsack isn't a valid Record<string, number>
-      Given a file named "cypress/integration/a.js" with:
+      Given a file named "cypress/e2e/a.js" with:
         """
         it("should pass", () => {});
         """
@@ -95,7 +97,7 @@ Feature: knapsack.json
         """
 
     Scenario: knapsack isn't readable
-      Given a file named "cypress/integration/a.js" with:
+      Given a file named "cypress/e2e/a.js" with:
         """
         it("should pass", () => {});
         """

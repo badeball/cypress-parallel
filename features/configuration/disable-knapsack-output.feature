@@ -1,7 +1,7 @@
 Feature: --disable-knapsack-output
   Rule: it should disable outputting of the knapsack
     Background:
-      Given a file named "cypress/integration/a.js" with:
+      Given a file named "cypress/e2e/a.js" with:
         """
         it("should pass", () => expect(true).to.be.true);
         """

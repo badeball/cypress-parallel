@@ -1,23 +1,23 @@
 Feature: --node
   Rule: it should determine bucket of tests
     Background:
-      Given a file named "cypress/integration/a.js" with:
+      Given a file named "cypress/e2e/a.js" with:
         """
         it("should pass", () => expect(true).to.be.true);
         """
-      And a file named "cypress/integration/b.js" with:
+      And a file named "cypress/e2e/b.js" with:
         """
         it("should pass", () => expect(true).to.be.true);
         """
-      And a file named "cypress/integration/c.js" with:
+      And a file named "cypress/e2e/c.js" with:
         """
         it("should pass", () => expect(true).to.be.true);
         """
-      And a file named "cypress/integration/d.js" with:
+      And a file named "cypress/e2e/d.js" with:
         """
         it("should pass", () => expect(true).to.be.true);
         """
-      And a file named "cypress/integration/e.js" with:
+      And a file named "cypress/e2e/e.js" with:
         """
         it("should pass", () => expect(true).to.be.true);
         """

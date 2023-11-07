@@ -21,14 +21,18 @@ Before(async function ({ gherkinDocument, pickle }) {
   await fs.rm(this.tmpDir, { recursive: true, force: true });
 
   await writeFile(
-    path.join(this.tmpDir, "cypress.json"),
-    JSON.stringify(
-      {
-        video: false,
-      },
-      null,
-      2
-    )
+    path.join(this.tmpDir, "cypress.config.js"),
+    `
+      const { defineConfig } = require("cypress");
+
+      module.exports = defineConfig({
+        e2e: {
+          video: false,
+          supportFile: false,
+          specPattern: "cypress/e2e/**/*.js",
+        }
+      })
+    `
   );
 
   await fs.mkdir(path.join(this.tmpDir, "node_modules", "@badeball"), {
